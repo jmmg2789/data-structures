@@ -152,18 +152,25 @@ public class BinarySearchTree {
     }
 
     public ArrayList<Integer> breadthFirstSearch() {
+        // establish the current node we have and create a queue
+        // to hold the next nodes to check and a list to hold the values
         Node currentNode = this.root;
         ArrayList<Integer> list = new ArrayList<>();
         LinkedList<Node> queue = new LinkedList<Node>();
         queue.addFirst(currentNode);
 
+        // keeps running while we have something in our queue
         while (queue.size() > 0) {
+            // get the first value in the queue and remove it
             currentNode = queue.getFirst();
             queue.removeFirst();
+            // add the value of the node to our list
             list.add(currentNode.value);
+            // if there is a child to the left, add it to the queue
             if (currentNode.left != null) {
                 queue.add(currentNode.left);
             }
+            // if there is a child to the right, add it to the queue
             if (currentNode.right != null) {
                 queue.add(currentNode.right);
             }
@@ -171,6 +178,25 @@ public class BinarySearchTree {
 
         return list;
     }
+
+    public ArrayList<Integer> breadthFirstSearchR(LinkedList<Node> queue, ArrayList<Integer>list) {
+        if (queue.size() == 0) {
+            return list;
+        }
+
+        Node currentNode = queue.getFirst();
+        queue.removeFirst();
+        list.add(currentNode.value);
+        if (currentNode.left != null) {
+            queue.add(currentNode.left);
+        }
+        if (currentNode.right != null) {
+            queue.add(currentNode.right);
+        }
+
+        return breadthFirstSearchR(queue,list);
+    }
+
     //          9
     //      4       20
     //    1   6   15  170
@@ -185,7 +211,16 @@ public class BinarySearchTree {
         tree.insert(15);
         tree.insert(1);
 
+        // BFS
         System.out.println(tree.breadthFirstSearch());
+
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.add(tree.root);
+
+        System.out.println(tree.breadthFirstSearchR(queue,new ArrayList<Integer>()));
+
+        // DFS
+
 
     }
 
