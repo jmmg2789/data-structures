@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree {
 
     Node root;
@@ -147,6 +151,30 @@ public class BinarySearchTree {
         return false;
     }
 
+    public ArrayList<Integer> breadthFirstSearch() {
+        Node currentNode = this.root;
+        ArrayList<Integer> list = new ArrayList<>();
+        LinkedList<Node> queue = new LinkedList<Node>();
+        queue.addFirst(currentNode);
+
+        while (queue.size() > 0) {
+            currentNode = queue.getFirst();
+            queue.removeFirst();
+            list.add(currentNode.value);
+            if (currentNode.left != null) {
+                queue.add(currentNode.left);
+            }
+            if (currentNode.right != null) {
+                queue.add(currentNode.right);
+            }
+        }
+
+        return list;
+    }
+    //          9
+    //      4       20
+    //    1   6   15  170
+
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
         tree.insert(9);
@@ -156,6 +184,9 @@ public class BinarySearchTree {
         tree.insert(170);
         tree.insert(15);
         tree.insert(1);
+
+        System.out.println(tree.breadthFirstSearch());
+
     }
 
 }
