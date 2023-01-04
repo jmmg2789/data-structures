@@ -5,18 +5,30 @@ public class QueueExample {
     LinkedList<String> queue = new LinkedList<>();
 
     public String peek() {
-        System.out.println(queue.get(0));
-        return queue.get(0);
+        if (queue.size() == 0) {
+            return "No item in queue.";
+        } else {
+            System.out.println(queue.get(0));
+            return queue.get(0);
+        }
     }
 
     public void enqueue(String item) {
-        queue.add(item);
-        System.out.println(item + " successfully queued.");
+        if (item == null) {
+            System.out.println("Cannot add null item.");
+        } else {
+            queue.add(item);
+            System.out.println(item + " successfully queued.");
+        }
     }
 
     public void dequeue() {
-        queue.removeFirst();
-        System.out.println("Successfully removed from queue.");
+        if (queue.size() == 0) {
+            System.out.println("No items in queue.");
+        } else {
+            queue.removeFirst();
+            System.out.println("Successfully removed from queue.");
+        }
     }
 
     public static void main(String[] args) {
