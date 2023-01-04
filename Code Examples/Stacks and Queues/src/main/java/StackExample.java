@@ -21,7 +21,7 @@ public class StackExample {
 
         stackExample.stack.pop();
         System.out.println(stackExample.stack.peek());
-        
+
     }
 
 }
