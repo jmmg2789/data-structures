@@ -197,11 +197,59 @@ public class BinarySearchTree {
         return breadthFirstSearchR(queue,list);
     }
 
+    public ArrayList<Integer> DFSInOrder() {
+        return traverseInOrder(this.root, new ArrayList<Integer>());
+    }
+
+    public ArrayList<Integer> DFSPostOrder() {
+        return traversePostOrder(this.root, new ArrayList<Integer>());
+    }
+
+    public ArrayList<Integer> DFSPreOrder() {
+        return traversePreOrder(this.root, new ArrayList<Integer>());
+    }
+
+    public ArrayList<Integer> traverseInOrder(Node node, ArrayList<Integer> list) {
+        if (node.left != null) {
+            traverseInOrder(node.left,list);
+        }
+        list.add(node.value);
+        if (node.right != null) {
+            traverseInOrder(node.right,list);
+        }
+
+        return list;
+    }
+
+    public ArrayList<Integer> traversePreOrder(Node node, ArrayList<Integer> list) {
+        list.add(node.value);
+        if (node.left != null) {
+            traversePreOrder(node.left,list);
+        }
+        if (node.right != null) {
+            traversePreOrder(node.right,list);
+        }
+
+        return list;
+    }
+
+    public ArrayList<Integer> traversePostOrder(Node node, ArrayList<Integer> list) {
+        if (node.left != null) {
+            traversePostOrder(node.left,list);
+        }
+        if (node.right != null) {
+            traversePostOrder(node.right,list);
+        }
+        list.add(node.value);
+        return list;
+    }
+
     //          9
     //      4       20
     //    1   6   15  170
 
     public static void main(String[] args) {
+        // instantiating the tree sketched above
         BinarySearchTree tree = new BinarySearchTree();
         tree.insert(9);
         tree.insert(4);
@@ -221,7 +269,14 @@ public class BinarySearchTree {
 
         // DFS
 
+        // in order
+        System.out.println(tree.DFSInOrder());
 
+        // pre order
+        System.out.println(tree.DFSPreOrder());
+
+        // post order
+        System.out.println(tree.DFSPostOrder());
     }
 
 }
