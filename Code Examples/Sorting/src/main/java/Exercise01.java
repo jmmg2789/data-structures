@@ -27,6 +27,6 @@ public class Exercise01 {
     // Merge sort to prevent memory usage and want to ensure consistency.
 
     // 8. You want to teach sorting for the first time
-    // Bubble sort as it is very simple to implement. 
+    // Bubble sort as it is very simple to implement.
 
 }
